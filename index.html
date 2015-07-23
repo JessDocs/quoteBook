@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quoteBook">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body ng-controller="mainCtrl">
+      
+       <h1>Quote Book</h1>
+         <div>
+            <input type="checkbox" ng-model="addQ">Add Quote
+            <input type="checkbox" ng-model="removeQ">Remove Quote
+            <input type="checkbox" ng-model="filterQ">Filter
+         </div>
+       
+       <div>
+           <input type="text" ng-model="newQuotes" placeholder="New Quote" ng-show="addQ">
+           <input type="text" ng-model="newAuthor" placeholder="Author Name" ng-show="addQ">
+           <button ng-click ="addData(newQuotes, newAuthor)" ng-show="addQ">Add Quote</button>
+
+           <input type="text" ng-model ="newQuotes1" placeholder="Remove Quote" ng-show="removeQ">
+           <button type="button" ng-click="removeQuote(newQuotes1)" ng-show="removeQ">Remove Quote</button>
+
+           <input type="text" ng-model="newAuthor2" placeholder="Filter"ng-show="filterQ">
+           <button type="button" ng-show="filterQ">Filter Quotes</button>
+       </div>
+              
+       <div ng-repeat="quote in quotes | filter: newAuthor2">      
+        <p> {{quote.text}} {{quote.author}} </p>
+       </div>
+       
+
+    
+       <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script> 
+       <script src="js/app.js"></script>
+       <script src="js/dataService.js"></script>
+       <script src="js/mainCtr.js"></script>
+    </body>
+</html>
